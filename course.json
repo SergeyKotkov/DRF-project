@@ -1,0 +1,48 @@
+[
+  {
+    "model": "course.course",
+    "pk": 1,
+    "fields": {
+      "preview": "",
+      "description": "Введение в git.hub"
+    }
+  },
+  {
+    "model": "course.course",
+    "pk": 3,
+    "fields": {
+      "preview": "",
+      "description": "Введение в django"
+    }
+  },
+  {
+    "model": "course.lesson",
+    "pk": 1,
+    "fields": {
+      "description": "Знакомство с git",
+      "preview": "",
+      "video_link": "https://www.youtube.com/watch?v=i9AHJkHqkpw",
+      "course": 1
+    }
+  },
+  {
+    "model": "course.lesson",
+    "pk": 2,
+    "fields": {
+      "description": "Знакомство с Django",
+      "preview": "",
+      "video_link": "https://www.youtube.com/watch?v=jV9uXh_1Pso",
+      "course": 3
+    }
+  },
+  {
+    "model": "course.lesson",
+    "pk": 3,
+    "fields": {
+      "description": "Познакомимся с git еще раз",
+      "preview": "",
+      "video_link": "https://www.youtube.com/shorts/B1AkqtFQYLE",
+      "course": 1
+    }
+  }
+]
