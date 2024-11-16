@@ -7,8 +7,15 @@ from users.permissions import IsModer, IsOwner
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from django.utils.decorators import method_decorator
+from drf_yasg.utils import swagger_auto_schema
 
+
+@method_decorator(name='list', decorator=swagger_auto_schema(
+    operation_description="description from swagger_auto_schema via method_decorator"
+))
 class CourseViewSet(ModelViewSet):
+    """ViewSet для курса"""
     queryset = Course.objects.all()
 
     def get_serializer_class(self):
@@ -32,6 +39,7 @@ class CourseViewSet(ModelViewSet):
 
 
 class LessonCreateAPIView(CreateAPIView):
+    """ Создание урока """
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (~IsModer, IsAuthenticated)
@@ -42,6 +50,7 @@ class LessonCreateAPIView(CreateAPIView):
         lesson.save()
 
 class LessonListAPIView(ListAPIView):
+    """Список уроков"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     pagination_class = CustomPagination
@@ -49,22 +58,26 @@ class LessonListAPIView(ListAPIView):
 
 
 class LessonRetrieveAPIView(RetrieveAPIView):
+    """ Вывод уроков """
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (IsModer | IsOwner, IsAuthenticated)
 
 class LessonUpdateAPIView(UpdateAPIView):
+    """Обновление урока"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (IsModer | IsOwner, IsAuthenticated)
 
 class LessonDestroyAPIView(DestroyAPIView):
+    """Удаление уроков"""
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     permission_classes = (~IsModer | IsOwner, IsAuthenticated)
 
 
 class SubscriptionCreateApiView(CreateAPIView):
+    """Subscription create or delete endpoint"""
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
     permission_classes = (IsAuthenticated,)
